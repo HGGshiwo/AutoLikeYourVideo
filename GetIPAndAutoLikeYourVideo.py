@@ -5,6 +5,7 @@ from urllib import request
 import time
 import requests
 from urllib import request
+import threading
 
 def Change_The_Time_Type(Video_Time):
     Digital_Video_Time = time.strptime(Video_Time, "%M:%S")
@@ -33,7 +34,7 @@ def Get_Ip_Form_66():
         'Accept-Language':'zh-CN,zh;q=0.8',
         'Cache-Control':'max-age=0',
         'Connection':'keep-alive',
-        'Host':'www.xicidaili.com',
+        'Host':'www.66ip.cn',
         'If-None-Match':'W/"b077743016dc54409ebe6b86ba7a869b"',
         'Upgrade-Insecure-Requests':'1',
         'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36',
@@ -52,8 +53,8 @@ def Auto_Like_Your_Video(url):
         driver = webdriver.Chrome(options=chromeOptions)
         
         # 打开视频播放页
-        driver.get("https://www.bilibili.com/video/BV1ZZ4y1u7PJ")
-        time.sleep(2)
+        driver.get("https://www.bilibili.com/video/BV1hi4y1x7PM")
+        time.sleep(7)
         
         # 获取视频时长
         Video_Time = driver.find_element_by_xpath("//div[@name='time_textarea']/span[3]").text
@@ -83,5 +84,7 @@ def Auto_Like_Your_Video(url):
 if __name__ == "__main__":
     Get_Ip_Form_66() # 爬取ip地址
     for url in ip_list:
-        Auto_Like_Your_Video(url)
+        # threading.Thread(target=Auto_Like_Your_Video,args=(url,)).start()
+        Auto_Like_Your_Video(url)  
+        
     
